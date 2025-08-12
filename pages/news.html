@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>近期动态 - 苏州市人工智能赋能产业发展</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
     <style>
         .page-header {
-            background: linear-gradient(135deg, #4a90e2 0%, #357abd 50%, #5dade2 100%);
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 25%, #1565c0 50%, #0d47a1 75%, #01579b 100%);
             height: 50vh;
             display: flex;
             align-items: center;
@@ -16,13 +18,38 @@
             text-align: center;
             color: white;
             margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(33, 150, 243, 0.1) 0%, rgba(25, 118, 210, 0.1) 50%, rgba(21, 101, 192, 0.1) 100%);
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
         }
 
         .page-title {
             font-size: 3rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .page-subtitle {
@@ -32,7 +59,8 @@
 
         .news-intro {
             padding: 5rem 0;
-            background-color: #f8f9fa;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 248, 255, 0.9) 100%);
+            backdrop-filter: blur(10px);
         }
 
         .news-intro-content {
@@ -96,7 +124,7 @@
             background: white;
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             position: relative;
             transition: transform 0.3s ease;
         }
@@ -136,7 +164,7 @@
             background: #4a90e2;
             border: 4px solid white;
             border-radius: 50%;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             z-index: 10;
         }
 
@@ -211,7 +239,7 @@
             background: white;
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
             border: 2px solid transparent;
         }
@@ -262,7 +290,7 @@
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
 
@@ -303,46 +331,322 @@
             font-size: 0.9rem;
         }
 
+        /* Vlog视频区域样式 */
+        .vlog-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vlog-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(33,150,243,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .vlog-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .vlog-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 248, 255, 0.9) 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(33, 150, 243, 0.2);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(33, 150, 243, 0.3);
+        }
+
+        .vlog-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .vlog-intro h3 {
+            font-size: 2.5rem;
+            color: #1565c0;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .vlog-intro p {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .vlog-video-container {
+            margin: 3rem 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .video-placeholder {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 25%, #1565c0 50%, #0d47a1 75%, #01579b 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(33, 150, 243, 0.4);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-placeholder:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(33, 150, 243, 0.6);
+        }
+
+        .video-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        .video-icon {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+            z-index: 2;
+        }
+
+        .video-text {
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+
+        .video-text h4 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .video-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .video-duration {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            background: white;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .play-icon {
+            font-size: 2rem;
+            color: #2196f3;
+            margin-left: 5px;
+        }
+
+        .vlog-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 248, 255, 0.9) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(33, 150, 243, 0.2);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(33, 150, 243, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 50%, #1565c0 100%);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(33, 150, 243, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h4 {
+            font-size: 1.3rem;
+            color: #1565c0;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .feature-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
         @media (max-width: 768px) {
             .page-title {
                 font-size: 2rem;
             }
-            
+
             .timeline-container::before {
                 left: 20px;
             }
-            
+
             .timeline-item {
                 flex-direction: row !important;
                 margin-left: 40px;
             }
-            
+
             .timeline-content {
                 width: 100%;
             }
-            
+
             .timeline-content::before {
                 left: -30px !important;
                 border-right-color: white !important;
                 border-left-color: transparent !important;
             }
-            
+
             .timeline-dot {
                 left: 20px;
             }
-            
+
             .timeline-date {
                 left: 20px;
                 transform: none;
             }
-            
+
             .highlights-grid,
             .activity-grid {
                 grid-template-columns: 1fr;
             }
+
+            .vlog-intro h3 {
+                font-size: 2rem;
+            }
+
+            .video-placeholder {
+                height: 300px;
+                max-width: 100%;
+            }
+
+            .video-text h4 {
+                font-size: 1.5rem;
+            }
+
+            .vlog-features {
+                grid-template-columns: 1fr;
+            }
+
+            .play-button {
+                width: 60px;
+                height: 60px;
+            }
+
+            .play-icon {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
@@ -403,7 +707,7 @@
         <section class="news-timeline">
             <div class="container">
                 <h2 class="section-title">调研时间线</h2>
-                
+
                 <div class="timeline-container">
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
@@ -498,6 +802,59 @@
                                 <span class="news-tag">成果总结</span>
                             </div>
                             <a href="#" class="news-link">查看详情 →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 企业参观Vlog视频区域 -->
+        <section class="vlog-section">
+            <div class="container">
+                <h2 class="section-title">企业参观Vlog</h2>
+                <div class="vlog-container">
+                    <div class="vlog-intro">
+                        <div class="vlog-icon">🎬</div>
+                        <h3>实地探访苏州AI企业</h3>
+                        <p>跟随我们的镜头，深入苏州AI企业一线，感受科技创新的魅力，了解AI技术如何改变传统产业。</p>
+                    </div>
+
+                    <div class="vlog-video-container">
+                        <div class="video-placeholder">
+                            <div class="video-icon">▶️</div>
+                            <div class="video-text">
+                                <h4>企业参观Vlog</h4>
+                                <p>点击播放按钮观看完整视频</p>
+                                <div class="video-duration">预计时长: 15-20分钟</div>
+                            </div>
+                            <div class="video-overlay">
+                                <button class="play-button">
+                                    <span class="play-icon">▶</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vlog-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">🏭</div>
+                            <h4>企业实地考察</h4>
+                            <p>深入思必驰、汇川技术等知名AI企业</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🎤</div>
+                            <h4>专家访谈</h4>
+                            <p>与企业高管和技术专家深度交流</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🔬</div>
+                            <h4>技术展示</h4>
+                            <p>近距离观察AI技术应用场景</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">📊</div>
+                            <h4>发展洞察</h4>
+                            <p>了解企业发展战略和行业趋势</p>
                         </div>
                     </div>
                 </div>
@@ -625,5 +982,62 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script>
+        // Vlog视频区域交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoPlaceholder = document.querySelector('.video-placeholder');
+            const playButton = document.querySelector('.play-button');
+            
+            if (videoPlaceholder && playButton) {
+                // 点击视频区域或播放按钮的事件
+                const handleVideoClick = function() {
+                    // 这里可以添加视频播放逻辑
+                    // 例如：打开模态框播放视频、跳转到视频页面等
+                    alert('视频播放功能即将上线！\n\n您可以在这里插入企业参观的vlog视频。\n\n建议视频内容：\n• 企业实地考察\n• 专家访谈\n• 技术展示\n• 发展洞察');
+                };
+                
+                videoPlaceholder.addEventListener('click', handleVideoClick);
+                playButton.addEventListener('click', handleVideoClick);
+                
+                // 添加键盘事件支持
+                videoPlaceholder.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleVideoClick();
+                    }
+                });
+                
+                // 设置可访问性
+                videoPlaceholder.setAttribute('tabindex', '0');
+                videoPlaceholder.setAttribute('role', 'button');
+                videoPlaceholder.setAttribute('aria-label', '播放企业参观Vlog视频');
+            }
+            
+            // 添加滚动动画效果
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // 观察vlog区域元素
+            const vlogElements = document.querySelectorAll('.vlog-intro, .video-placeholder, .feature-item');
+            vlogElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
 </body>
+
 </html>
