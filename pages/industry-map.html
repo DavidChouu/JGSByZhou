@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产业地图 - 苏州市人工智能赋能产业发展</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 50%, #5dade2 100%);
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .map-intro {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .map-intro-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .map-intro-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .map-intro-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .map-container {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .map-wrapper {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .map-area {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid #4a90e2;
+        }
+
+        .map-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #4a90e2;
+            border: 3px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .map-point:hover {
+            transform: scale(1.3);
+            background: #ff6b35;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .map-point.active {
+            background: #ff6b35;
+            transform: scale(1.2);
+        }
+
+        .map-point.unicorn {
+            background: #ff6b35;
+            border-color: #ffd700;
+        }
+
+        .map-point.unicorn::after {
+            content: "🦄";
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+        }
+
+        .map-legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .legend-dot.regular {
+            background: #4a90e2;
+        }
+
+        .legend-dot.unicorn {
+            background: #ff6b35;
+        }
+
+        .district-overview {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .district-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .district-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .district-card:hover {
+            transform: translateY(-5px);
+            border-color: #4a90e2;
+        }
+
+        .district-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .district-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #4a90e2, #357abd);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .district-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .district-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .district-stat {
+            text-align: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .district-stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4a90e2;
+        }
+
+        .district-stat-label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .district-focus {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .map-area {
+                height: 400px;
+            }
+            
+            .map-legend {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .district-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>数智苏州前瞻调研</h1>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="companies.html" class="nav-link">企业介绍</a>
+                </li>
+                <li class="nav-item">
+                    <a href="policies.html" class="nav-link">政策支持</a>
+                </li>
+                <li class="nav-item">
+                    <a href="industry-map.html" class="nav-link active">产业地图</a>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html" class="nav-link">近期动态</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">关于我们</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <header class="page-header">
+        <div class="hero-content">
+            <h1 class="page-title">产业地图</h1>
+            <p class="page-subtitle">探索苏州AI产业地理分布</p>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main>
+        <!-- 地图介绍 -->
+        <section class="map-intro">
+            <div class="container">
+                <div class="map-intro-content">
+                    <h2>苏州AI产业地理分布</h2>
+                    <p>苏州AI产业在全市范围内形成了多个集聚区，每个区域都有其独特的产业特色和发展重点。</p>
+                    <p>点击地图上的标记点，了解各个企业的详细信息和发展状况。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 交互式地图 -->
+        <section class="map-container">
+            <div class="container">
+                <h2 class="section-title">产业分布地图</h2>
+                
+                <div class="map-wrapper">
+                    <div class="map-area" id="industry-map">
+                        <!-- 工业园区 -->
+                        <div class="map-point unicorn" style="top: 30%; left: 25%;" data-company="sip-ai"></div>
+                        <div class="map-point" style="top: 35%; left: 30%;" data-company="sip-tech"></div>
+                        <div class="map-point" style="top: 40%; left: 20%;" data-company="sip-manufacturing"></div>
+                        
+                        <!-- 高新区 -->
+                        <div class="map-point unicorn" style="top: 45%; left: 60%;" data-company="snd-ai"></div>
+                        <div class="map-point" style="top: 50%; left: 65%;" data-company="snd-software"></div>
+                        <div class="map-point" style="top: 55%; left: 55%;" data-company="snd-research"></div>
+                        
+                        <!-- 相城区 -->
+                        <div class="map-point" style="top: 60%; left: 40%;" data-company="xc-hardware"></div>
+                        <div class="map-point" style="top: 65%; left: 45%;" data-company="xc-chip"></div>
+                        
+                        <!-- 姑苏区 -->
+                        <div class="map-point" style="top: 25%; left: 50%;" data-company="gs-culture"></div>
+                        <div class="map-point" style="top: 30%; left: 55%;" data-company="gs-tourism"></div>
+                        
+                        <!-- 吴中区 -->
+                        <div class="map-point" style="top: 70%; left: 35%;" data-company="wz-agriculture"></div>
+                        <div class="map-point" style="top: 75%; left: 40%;" data-company="wz-logistics"></div>
+                    </div>
+                    
+                    <!-- 图例 -->
+                    <div class="map-legend">
+                        <div class="legend-item">
+                            <div class="legend-dot regular"></div>
+                            <span>AI企业</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot unicorn"></div>
+                            <span>独角兽企业</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 区域概览 -->
+        <section class="district-overview">
+            <div class="container">
+                <h2 class="section-title">区域产业特色</h2>
+                <div class="district-grid">
+                    <div class="district-card">
+                        <div class="district-header">
+                            <div class="district-icon">🏭</div>
+                            <div class="district-name">工业园区</div>
+                        </div>
+                        <div class="district-stats">
+                            <div class="district-stat">
+                                <div class="district-stat-value">50+</div>
+                                <div class="district-stat-label">AI企业</div>
+                            </div>
+                            <div class="district-stat">
+                                <div class="district-stat-value">2</div>
+                                <div class="district-stat-label">独角兽</div>
+                            </div>
+                        </div>
+                        <div class="district-focus">
+                            重点发展智能制造和工业AI应用，拥有完善的产业生态和配套设施。
+                        </div>
+                    </div>
+
+                    <div class="district-card">
+                        <div class="district-header">
+                            <div class="district-icon">💻</div>
+                            <div class="district-name">高新区</div>
+                        </div>
+                        <div class="district-stats">
+                            <div class="district-stat">
+                                <div class="district-stat-value">30+</div>
+                                <div class="district-stat-label">AI企业</div>
+                            </div>
+                            <div class="district-stat">
+                                <div class="district-stat-value">1</div>
+                                <div class="district-stat-label">独角兽</div>
+                            </div>
+                        </div>
+                        <div class="district-focus">
+                            重点发展AI算法和软件服务，集聚了大量科技创新企业和研发机构。
+                        </div>
+                    </div>
+
+                    <div class="district-card">
+                        <div class="district-header">
+                            <div class="district-icon">🔬</div>
+                            <div class="district-name">相城区</div>
+                        </div>
+                        <div class="district-stats">
+                            <div class="district-stat">
+                                <div class="district-stat-value">20+</div>
+                                <div class="district-stat-label">AI企业</div>
+                            </div>
+                            <div class="district-stat">
+                                <div class="district-stat-value">0</div>
+                                <div class="district-stat-label">独角兽</div>
+                            </div>
+                        </div>
+                        <div class="district-focus">
+                            重点发展AI硬件和芯片产业，建设智能硬件产业集群。
+                        </div>
+                    </div>
+
+                    <div class="district-card">
+                        <div class="district-header">
+                            <div class="district-icon">🏛️</div>
+                            <div class="district-name">姑苏区</div>
+                        </div>
+                        <div class="district-stats">
+                            <div class="district-stat">
+                                <div class="district-stat-value">15+</div>
+                                <div class="district-stat-label">AI企业</div>
+                            </div>
+                            <div class="district-stat">
+                                <div class="district-stat-value">0</div>
+                                <div class="district-stat-label">独角兽</div>
+                            </div>
+                        </div>
+                        <div class="district-focus">
+                            重点发展AI+文化旅游，推动传统文化与现代科技融合发展。
+                        </div>
+                    </div>
+
+                    <div class="district-card">
+                        <div class="district-header">
+                            <div class="district-icon">🌾</div>
+                            <div class="district-name">吴中区</div>
+                        </div>
+                        <div class="district-stats">
+                            <div class="district-stat">
+                                <div class="district-stat-value">10+</div>
+                                <div class="district-stat-label">AI企业</div>
+                            </div>
+                            <div class="district-stat">
+                                <div class="district-stat-value">0</div>
+                                <div class="district-stat-label">独角兽</div>
+                            </div>
+                        </div>
+                        <div class="district-focus">
+                            重点发展AI+农业和智慧物流，推动传统产业数字化转型。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>数智苏州前瞻调研</h3>
+                    <p>探索AI产业发展，助力数字经济建设</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="companies.html">企业介绍</a></li>
+                        <li><a href="policies.html">政策支持</a></li>
+                        <li><a href="industry-map.html">产业地图</a></li>
+                        <li><a href="news.html">近期动态</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <p>南京大学数智苏州前瞻调研团</p>
+                    <p>© 2024 苏州市人工智能赋能产业发展调研网站</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

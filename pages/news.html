@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>近期动态 - 苏州市人工智能赋能产业发展</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 50%, #5dade2 100%);
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .news-intro {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .news-intro-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .news-intro-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .news-intro-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .news-timeline {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .timeline-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #4a90e2, #357abd);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -30px;
+            border-left-color: white;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -30px;
+            border-right-color: white;
+            transform: translateY(-50%);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: #4a90e2;
+            border: 4px solid white;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        .timeline-date {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4a90e2;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .news-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .news-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .news-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .news-tag {
+            background: #e3f2fd;
+            color: #4a90e2;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .news-link {
+            color: #4a90e2;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .news-link:hover {
+            color: #357abd;
+            text-decoration: underline;
+        }
+
+        .highlights-section {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .highlight-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-5px);
+            border-color: #4a90e2;
+        }
+
+        .highlight-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #4a90e2, #357abd);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .highlight-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-content {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .team-activities {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .activity-image {
+            height: 150px;
+            background: linear-gradient(45deg, #4a90e2, #357abd);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .activity-content {
+            padding: 1.5rem;
+        }
+
+        .activity-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .activity-date {
+            color: #4a90e2;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .activity-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .timeline-container::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                flex-direction: row !important;
+                margin-left: 40px;
+            }
+            
+            .timeline-content {
+                width: 100%;
+            }
+            
+            .timeline-content::before {
+                left: -30px !important;
+                border-right-color: white !important;
+                border-left-color: transparent !important;
+            }
+            
+            .timeline-dot {
+                left: 20px;
+            }
+            
+            .timeline-date {
+                left: 20px;
+                transform: none;
+            }
+            
+            .highlights-grid,
+            .activity-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>数智苏州前瞻调研</h1>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="companies.html" class="nav-link">企业介绍</a>
+                </li>
+                <li class="nav-item">
+                    <a href="policies.html" class="nav-link">政策支持</a>
+                </li>
+                <li class="nav-item">
+                    <a href="industry-map.html" class="nav-link">产业地图</a>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html" class="nav-link active">近期动态</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">关于我们</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <header class="page-header">
+        <div class="hero-content">
+            <h1 class="page-title">近期动态</h1>
+            <p class="page-subtitle">团队调研活动与最新发现</p>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main>
+        <!-- 动态介绍 -->
+        <section class="news-intro">
+            <div class="container">
+                <div class="news-intro-content">
+                    <h2>调研活动进展</h2>
+                    <p>"数智苏州前瞻调研团"深入苏州AI产业一线，实地走访企业、访谈专家，深入了解苏州AI产业发展现状。</p>
+                    <p>通过调研，我们发现了许多有价值的信息和见解，为理解苏州AI产业发展提供了第一手资料。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 时间线动态 -->
+        <section class="news-timeline">
+            <div class="container">
+                <h2 class="section-title">调研时间线</h2>
+                
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2024年8月1日</div>
+                        <div class="timeline-content">
+                            <div class="news-title">团队成立与调研启动</div>
+                            <div class="news-description">
+                                "数智苏州前瞻调研团"正式成立，团队成员来自南京大学不同学院，开始筹备调研工作。
+                            </div>
+                            <div class="news-tags">
+                                <span class="news-tag">团队成立</span>
+                                <span class="news-tag">调研启动</span>
+                            </div>
+                            <a href="#" class="news-link">查看详情 →</a>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2024年8月5日</div>
+                        <div class="timeline-content">
+                            <div class="news-title">政策调研与资料收集</div>
+                            <div class="news-description">
+                                深入调研国家、省、市、区四级AI产业政策，收集整理相关政策文件和实施细则。
+                            </div>
+                            <div class="news-tags">
+                                <span class="news-tag">政策调研</span>
+                                <span class="news-tag">资料收集</span>
+                            </div>
+                            <a href="#" class="news-link">查看详情 →</a>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2024年8月10日</div>
+                        <div class="timeline-content">
+                            <div class="news-title">企业走访第一站：工业园区</div>
+                            <div class="news-description">
+                                走访苏州工业园区，实地考察思必驰科技、汇川技术等AI企业，了解企业发展现状。
+                            </div>
+                            <div class="news-tags">
+                                <span class="news-tag">企业走访</span>
+                                <span class="news-tag">工业园区</span>
+                            </div>
+                            <a href="#" class="news-link">查看详情 →</a>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2024年8月15日</div>
+                        <div class="timeline-content">
+                            <div class="news-title">高新区调研与访谈</div>
+                            <div class="news-description">
+                                深入高新区调研，访谈同程艺龙、苏州纳米技术研究院等企业，了解AI技术应用情况。
+                            </div>
+                            <div class="news-tags">
+                                <span class="news-tag">高新区</span>
+                                <span class="news-tag">企业访谈</span>
+                            </div>
+                            <a href="#" class="news-link">查看详情 →</a>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2024年8月20日</div>
+                        <div class="timeline-content">
+                            <div class="news-title">专家访谈与学术交流</div>
+                            <div class="news-description">
+                                邀请苏州大学AI领域专家进行深度访谈，探讨苏州AI产业发展趋势和挑战。
+                            </div>
+                            <div class="news-tags">
+                                <span class="news-tag">专家访谈</span>
+                                <span class="news-tag">学术交流</span>
+                            </div>
+                            <a href="#" class="news-link">查看详情 →</a>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2024年8月25日</div>
+                        <div class="timeline-content">
+                            <div class="news-title">调研报告撰写</div>
+                            <div class="news-description">
+                                整理调研资料，开始撰写调研报告，总结苏州AI产业发展现状和未来趋势。
+                            </div>
+                            <div class="news-tags">
+                                <span class="news-tag">报告撰写</span>
+                                <span class="news-tag">成果总结</span>
+                            </div>
+                            <a href="#" class="news-link">查看详情 →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 调研亮点 -->
+        <section class="highlights-section">
+            <div class="container">
+                <h2 class="section-title">调研亮点</h2>
+                <div class="highlights-grid">
+                    <div class="highlight-card">
+                        <div class="highlight-icon">🏭</div>
+                        <div class="highlight-title">产业集聚效应明显</div>
+                        <div class="highlight-content">
+                            苏州工业园区和高新区形成了明显的AI产业集聚效应，企业间协同发展，产业链完善。
+                        </div>
+                    </div>
+
+                    <div class="highlight-card">
+                        <div class="highlight-icon">🎓</div>
+                        <div class="highlight-title">产学研深度融合</div>
+                        <div class="highlight-content">
+                            苏州大学等高校与AI企业建立了紧密的合作关系，人才培养和技术转化效果显著。
+                        </div>
+                    </div>
+
+                    <div class="highlight-card">
+                        <div class="highlight-icon">💰</div>
+                        <div class="highlight-title">政策支持力度大</div>
+                        <div class="highlight-content">
+                            各级政府出台了完善的政策体系，在资金、人才、场地等方面给予大力支持。
+                        </div>
+                    </div>
+
+                    <div class="highlight-card">
+                        <div class="highlight-icon">🚀</div>
+                        <div class="highlight-title">创新活力强劲</div>
+                        <div class="highlight-content">
+                            AI企业创新意识强，在技术研发和应用落地方面表现突出，发展前景广阔。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 团队活动 -->
+        <section class="team-activities">
+            <div class="container">
+                <h2 class="section-title">团队活动</h2>
+                <div class="activity-grid">
+                    <div class="activity-card">
+                        <div class="activity-image">📸</div>
+                        <div class="activity-content">
+                            <div class="activity-title">企业实地考察</div>
+                            <div class="activity-date">2024年8月</div>
+                            <div class="activity-description">
+                                深入企业一线，实地考察AI技术应用场景，了解企业发展现状和未来规划。
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="activity-card">
+                        <div class="activity-image">🎤</div>
+                        <div class="activity-content">
+                            <div class="activity-title">专家深度访谈</div>
+                            <div class="activity-date">2024年8月</div>
+                            <div class="activity-description">
+                                邀请行业专家进行深度访谈，获取专业见解和行业发展趋势分析。
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="activity-card">
+                        <div class="activity-image">📊</div>
+                        <div class="activity-content">
+                            <div class="activity-title">数据收集分析</div>
+                            <div class="activity-date">2024年8月</div>
+                            <div class="activity-description">
+                                系统收集整理AI产业发展数据，进行深入分析和趋势预测。
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="activity-card">
+                        <div class="activity-image">📝</div>
+                        <div class="activity-content">
+                            <div class="activity-title">报告撰写完善</div>
+                            <div class="activity-date">2024年8月</div>
+                            <div class="activity-description">
+                                基于调研成果，撰写详细的调研报告，为苏州AI产业发展提供建议。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>数智苏州前瞻调研</h3>
+                    <p>探索AI产业发展，助力数字经济建设</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="companies.html">企业介绍</a></li>
+                        <li><a href="policies.html">政策支持</a></li>
+                        <li><a href="industry-map.html">产业地图</a></li>
+                        <li><a href="news.html">近期动态</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <p>南京大学数智苏州前瞻调研团</p>
+                    <p>© 2024 苏州市人工智能赋能产业发展调研网站</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
