@@ -23,13 +23,13 @@ body {
 
 /* 导航栏样式 */
 .navbar {
-    background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
     padding: 1rem 0;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
@@ -64,8 +64,8 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-    color: #ffd700;
-    background-color: rgba(255,255,255,0.1);
+    color: #87ceeb;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .hamburger {
@@ -84,7 +84,7 @@ body {
 
 /* 英雄区域样式 */
 .hero {
-    background: linear-gradient(135deg, #c41e3a 0%, #8b0000 50%, #2c5f41 100%);
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 50%, #5dade2 100%);
     height: 100vh;
     display: flex;
     align-items: center;
@@ -103,13 +103,13 @@ body {
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero-subtitle {
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    color: #ffd700;
+    color: #87ceeb;
 }
 
 .hero-description {
@@ -120,19 +120,19 @@ body {
 
 .cta-button {
     display: inline-block;
-    background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
     color: white;
     padding: 1rem 2rem;
     text-decoration: none;
     border-radius: 50px;
     font-weight: 600;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 15px rgba(196, 30, 58, 0.3);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
 }
 
 .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(196, 30, 58, 0.4);
+    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
 }
 
 /* 特色内容区域 */
@@ -157,7 +157,7 @@ body {
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
 }
 
 .features-grid {
@@ -172,14 +172,14 @@ body {
     padding: 2rem;
     border-radius: 15px;
     text-align: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #f0f0f0;
 }
 
 .feature-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .feature-icon {
@@ -258,7 +258,7 @@ body {
     justify-content: center;
     color: #666;
     font-size: 1.2rem;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* 页脚样式 */
@@ -315,7 +315,7 @@ body {
         width: 100%;
         text-align: center;
         transition: 0.3s;
-        box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
         padding: 2rem 0;
     }
 
@@ -374,6 +374,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -385,10 +386,21 @@ body {
     will-change: transform, opacity;
 }
 
-.feature-card:nth-child(1) { animation-delay: 0.1s; }
-.feature-card:nth-child(2) { animation-delay: 0.2s; }
-.feature-card:nth-child(3) { animation-delay: 0.3s; }
-.feature-card:nth-child(4) { animation-delay: 0.4s; }
+.feature-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.feature-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.feature-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.feature-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
 
 /* 性能优化 */
 
@@ -416,17 +428,17 @@ img {
 
 .feature-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(196, 30, 58, 0.4);
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.4);
 }
 
 .nav-link:hover {
-    color: #ffd700;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    color: #87ceeb;
+    text-shadow: 0 0 10px rgba(135, 206, 235, 0.3);
 }
 
 /* 页面加载动画 */
@@ -435,8 +447,129 @@ body.loaded .hero {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
- 
+/* 重点产业区域样式 */
+.industries {
+    padding: 5rem 0;
+    background-color: #f8f9fa;
+}
+
+.industries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.industry-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.industry-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-color: #4a90e2;
+}
+
+.industry-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.industry-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #4a90e2;
+}
+
+.industry-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* 近期动态区域样式 */
+.news-preview {
+    padding: 5rem 0;
+    background-color: white;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.news-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-color: #4a90e2;
+}
+
+.news-date {
+    color: #4a90e2;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.news-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.news-card p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.news-link {
+    color: #4a90e2;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.news-link:hover {
+    color: #357abd;
+    text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+
+    .industries-grid,
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .industry-card,
+    .news-card {
+        padding: 1.5rem;
+    }
+}
