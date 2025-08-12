@@ -66,7 +66,7 @@ class JinggangshanMap {
             top: ${site.y}%;
             width: 20px;
             height: 20px;
-            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 50%, #1565c0 100%);
             border: 3px solid white;
             border-radius: 50%;
             cursor: pointer;
@@ -100,13 +100,13 @@ class JinggangshanMap {
         // 添加悬停效果
         marker.addEventListener('mouseenter', () => {
             marker.style.transform = 'scale(1.2)';
-            marker.style.background = '#357abd';
+            marker.style.background = '#1565c0';
             label.style.opacity = '1';
         });
         
         marker.addEventListener('mouseleave', () => {
             marker.style.transform = 'scale(1)';
-            marker.style.background = '#4a90e2';
+            marker.style.background = '#2196f3';
             label.style.opacity = '0';
         });
         
@@ -170,7 +170,7 @@ class JinggangshanMap {
             </div>
             <a href="${site.url}" style="
                 display: inline-block;
-                background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+                background: linear-gradient(135deg, #2196f3 0%, #1976d2 50%, #1565c0 100%);
                 color: white;
                 padding: 0.8rem 1.5rem;
                 text-decoration: none;
