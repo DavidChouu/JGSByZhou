@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>井冈山文化遗产项目 - 启动页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn.primary {
+            background: #c41e3a;
+            border-color: #c41e3a;
+        }
+
+        .btn.primary:hover {
+            background: #8b0000;
+            border-color: #8b0000;
+        }
+
+        .features {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .feature {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature h3 {
+            margin-bottom: 0.5rem;
+            color: #ffd700;
+        }
+
+        .feature p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🏔️ 井冈山文化遗产</div>
+        <div class="subtitle">红色圣地 精神家园</div>
+        <div class="description">
+            这是一个介绍井冈山文化遗产的响应式网站项目，包含历史背景、重要人物、革命遗址和文化传承等内容。
+            作为井冈山暑期社会实践项目，展现了井冈山精神的永恒魅力。
+        </div>
+        
+        <div class="buttons">
+            <a href="index.html" class="btn primary">进入网站</a>
+            <a href="README.md" class="btn">查看文档</a>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h3>📚 历史背景</h3>
+                <p>了解井冈山革命根据地的建立历程和历史意义</p>
+            </div>
+            <div class="feature">
+                <h3>👥 历史人物</h3>
+                <p>认识在井冈山革命斗争中发挥重要作用的历史人物</p>
+            </div>
+            <div class="feature">
+                <h3>🏛️ 重要遗址</h3>
+                <p>探访井冈山革命遗址，感受历史的厚重</p>
+            </div>
+            <div class="feature">
+                <h3>🌱 文化传承</h3>
+                <p>了解井冈山精神在新时代的传承与发展</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

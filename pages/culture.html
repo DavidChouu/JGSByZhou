@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文化传承 - 井冈山文化遗产</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #c41e3a 0%, #8b0000 50%, #2c5f41 100%);
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .culture-intro {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .culture-intro-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .culture-intro-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .culture-intro-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .spirit-section {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .spirit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .spirit-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .spirit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: #c41e3a;
+        }
+
+        .spirit-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .spirit-card h3 {
+            color: #c41e3a;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .spirit-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .inheritance-section {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .inheritance-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .inheritance-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .inheritance-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .inheritance-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .placeholder-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #ddd 0%, #bbb 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .education-section {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .education-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-left: 4px solid #c41e3a;
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .education-card h3 {
+            color: #c41e3a;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .education-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .activities-section {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .activity-image {
+            height: 200px;
+            background: linear-gradient(135deg, #ddd 0%, #bbb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        .activity-content {
+            padding: 2rem;
+        }
+
+        .activity-title {
+            font-size: 1.5rem;
+            color: #c41e3a;
+            margin-bottom: 1rem;
+        }
+
+        .activity-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .activity-benefits {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .activity-benefits h4 {
+            color: #c41e3a;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .activity-benefits ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .activity-benefits li {
+            padding: 0.3rem 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .activity-benefits li::before {
+            content: '✓';
+            color: #c41e3a;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .future-section {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .future-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .future-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .future-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        .future-vision {
+            background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        .future-vision h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .future-vision p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .inheritance-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .spirit-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .future-vision {
+                padding: 2rem;
+            }
+
+            .future-vision h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>井冈山文化遗产</h1>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="history.html" class="nav-link">历史背景</a>
+                </li>
+                <li class="nav-item">
+                    <a href="figures.html" class="nav-link">历史人物</a>
+                </li>
+                <li class="nav-item">
+                    <a href="sites.html" class="nav-link">重要遗址</a>
+                </li>
+                <li class="nav-item">
+                    <a href="culture.html" class="nav-link active">文化传承</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <header class="page-header">
+        <div class="hero-content">
+            <h1 class="page-title">文化传承</h1>
+            <p class="hero-subtitle">传承红色基因，弘扬井冈山精神</p>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main>
+        <!-- 文化传承介绍 -->
+        <section class="culture-intro">
+            <div class="container">
+                <div class="culture-intro-content">
+                    <h2>井冈山精神</h2>
+                    <p>
+                        井冈山精神是中国共产党在井冈山革命根据地时期培育的伟大革命精神，
+                        是中国共产党人精神谱系的重要组成部分，是中华民族宝贵的精神财富。
+                    </p>
+                    <p>
+                        在新时代，井冈山精神依然具有重要的现实意义，激励着我们在新的历史条件下
+                        继续发扬革命传统，传承红色基因，为实现中华民族伟大复兴而努力奋斗。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 井冈山精神内涵 -->
+        <section class="spirit-section">
+            <div class="container">
+                <h2 class="section-title">井冈山精神内涵</h2>
+                <div class="spirit-grid">
+                    <div class="spirit-card">
+                        <div class="spirit-icon">🔥</div>
+                        <h3>坚定信念</h3>
+                        <p>
+                            坚定信念是井冈山精神的灵魂。在极其艰苦的条件下，
+                            革命先辈们始终坚信革命必胜，共产主义理想一定能够实现。
+                            这种坚定的理想信念，是战胜一切困难的精神支柱。
+                        </p>
+                    </div>
+
+                    <div class="spirit-card">
+                        <div class="spirit-icon">⚔️</div>
+                        <h3>艰苦奋斗</h3>
+                        <p>
+                            艰苦奋斗是井冈山精神的本质特征。在井冈山时期，
+                            红军战士们在极其艰苦的环境中坚持斗争，自力更生，
+                            克服了难以想象的困难，体现了顽强的革命意志。
+                        </p>
+                    </div>
+
+                    <div class="spirit-card">
+                        <div class="spirit-icon">🎯</div>
+                        <h3>实事求是</h3>
+                        <p>
+                            实事求是是井冈山精神的核心。毛泽东同志在井冈山时期，
+                            坚持从实际出发，创造性地开辟了农村包围城市的革命道路，
+                            体现了马克思主义与中国实际相结合的科学态度。
+                        </p>
+                    </div>
+
+                    <div class="spirit-card">
+                        <div class="spirit-icon">🤝</div>
+                        <h3>依靠群众</h3>
+                        <p>
+                            依靠群众是井冈山精神的根本。在井冈山斗争中，
+                            红军始终与人民群众同甘共苦，赢得了人民群众的衷心拥护和支持，
+                            这是革命胜利的根本保证。
+                        </p>
+                    </div>
+
+                    <div class="spirit-card">
+                        <div class="spirit-icon">💪</div>
+                        <h3>敢闯新路</h3>
+                        <p>
+                            敢闯新路是井冈山精神的重要特征。在井冈山时期，
+                            革命先辈们敢于打破常规，勇于创新，开辟了农村包围城市的革命道路，
+                            体现了开拓创新的精神品质。
+                        </p>
+                    </div>
+
+                    <div class="spirit-card">
+                        <div class="spirit-icon">❤️</div>
+                        <h3>勇于胜利</h3>
+                        <p>
+                            勇于胜利是井冈山精神的鲜明特征。在井冈山斗争中，
+                            红军战士们面对强敌，毫不畏惧，英勇战斗，
+                            最终取得了革命的胜利，体现了革命英雄主义精神。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 现代传承 -->
+        <section class="inheritance-section">
+            <div class="container">
+                <div class="inheritance-content">
+                    <div class="inheritance-text">
+                        <h2>现代传承意义</h2>
+                        <p>
+                            井冈山精神是中国共产党人精神谱系的重要组成部分，
+                            在新时代具有重要的现实意义和时代价值。
+                        </p>
+                        <p>
+                            传承井冈山精神，就是要坚定理想信念，坚持党的领导，
+                            坚持中国特色社会主义道路，为实现中华民族伟大复兴而努力奋斗。
+                        </p>
+                        <p>
+                            在新时代，我们要继续发扬井冈山精神，在新的历史条件下
+                            不断推进理论创新、实践创新、制度创新、文化创新，
+                            为实现第二个百年奋斗目标而不懈努力。
+                        </p>
+                    </div>
+                    <div class="inheritance-image">
+                        <div class="placeholder-image">
+                            <p>现代传承活动图片</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 教育价值 -->
+        <section class="education-section">
+            <div class="container">
+                <h2 class="section-title">教育价值</h2>
+                <div class="education-grid">
+                    <div class="education-card">
+                        <h3>爱国主义教育</h3>
+                        <p>
+                            井冈山精神是爱国主义教育的重要内容，
+                            通过学习井冈山精神，可以增强民族自豪感和爱国情怀。
+                        </p>
+                    </div>
+
+                    <div class="education-card">
+                        <h3>理想信念教育</h3>
+                        <p>
+                            井冈山精神体现了坚定的理想信念，
+                            是理想信念教育的生动教材，有助于培养正确的价值观。
+                        </p>
+                    </div>
+
+                    <div class="education-card">
+                        <h3>艰苦奋斗教育</h3>
+                        <p>
+                            井冈山精神体现了艰苦奋斗的优良传统，
+                            有助于培养吃苦耐劳、勤俭节约的良好品质。
+                        </p>
+                    </div>
+
+                    <div class="education-card">
+                        <h3>创新精神教育</h3>
+                        <p>
+                            井冈山精神体现了敢闯新路的创新精神，
+                            有助于培养创新意识和创新能力。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 传承活动 -->
+        <section class="activities-section">
+            <div class="container">
+                <h2 class="section-title">传承活动</h2>
+                <div class="activities-grid">
+                    <div class="activity-card">
+                        <div class="activity-image">
+                            <p>红色旅游活动</p>
+                        </div>
+                        <div class="activity-content">
+                            <h3 class="activity-title">红色旅游</h3>
+                            <p class="activity-description">
+                                组织参观井冈山革命遗址，实地感受革命先辈的英勇事迹，
+                                了解井冈山革命历史，传承红色基因。
+                            </p>
+                            <div class="activity-benefits">
+                                <h4>活动意义：</h4>
+                                <ul>
+                                    <li>增强爱国主义情怀</li>
+                                    <li>了解革命历史</li>
+                                    <li>传承红色基因</li>
+                                    <li>培养革命精神</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="activity-card">
+                        <div class="activity-image">
+                            <p>主题教育活动</p>
+                        </div>
+                        <div class="activity-content">
+                            <h3 class="activity-title">主题教育</h3>
+                            <p class="activity-description">
+                                开展井冈山精神主题教育活动，通过讲座、展览、演出等形式，
+                                深入宣传井冈山精神，弘扬革命传统。
+                            </p>
+                            <div class="activity-benefits">
+                                <h4>活动意义：</h4>
+                                <ul>
+                                    <li>深化思想认识</li>
+                                    <li>弘扬革命传统</li>
+                                    <li>培养理想信念</li>
+                                    <li>增强文化自信</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="activity-card">
+                        <div class="activity-image">
+                            <p>社会实践</p>
+                        </div>
+                        <div class="activity-content">
+                            <h3 class="activity-title">社会实践</h3>
+                            <p class="activity-description">
+                                组织青年学生到井冈山开展社会实践活动，
+                                通过实地调研、志愿服务等形式，践行井冈山精神。
+                            </p>
+                            <div class="activity-benefits">
+                                <h4>活动意义：</h4>
+                                <ul>
+                                    <li>践行井冈山精神</li>
+                                    <li>增强实践能力</li>
+                                    <li>培养社会责任感</li>
+                                    <li>促进个人成长</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 未来展望 -->
+        <section class="future-section">
+            <div class="container">
+                <div class="future-content">
+                    <h2>未来展望</h2>
+                    <p>
+                        井冈山精神是中国共产党人精神谱系的重要组成部分，
+                        在新时代具有重要的现实意义和时代价值。
+                    </p>
+                    <p>
+                        我们要继续传承和弘扬井冈山精神，在新的历史条件下
+                        不断推进理论创新、实践创新、制度创新、文化创新，
+                        为实现中华民族伟大复兴而努力奋斗。
+                    </p>
+                    <div class="future-vision">
+                        <h3>传承使命</h3>
+                        <p>
+                            作为新时代的青年，我们要继承和发扬井冈山精神，
+                            坚定理想信念，勇于担当作为，为实现中华民族伟大复兴的中国梦
+                            贡献青春力量，让井冈山精神在新时代焕发新的光彩。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>井冈山文化遗产</h3>
+                    <p>传承红色基因，弘扬井冈山精神</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="history.html">历史背景</a></li>
+                        <li><a href="figures.html">历史人物</a></li>
+                        <li><a href="sites.html">重要遗址</a></li>
+                        <li><a href="culture.html">文化传承</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <p>井冈山暑期社会实践团队</p>
+                    <p>© 2025 井冈山文化遗产网站</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html> 
