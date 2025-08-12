@@ -151,8 +151,8 @@
 ## 部署信息
 
 ### GitHub Pages
-- **仓库地址**: https://github.com/DavidChouu/JGSByZhou
-- **网站地址**: https://davidchouu.github.io/JGSByZhou/
+- **仓库地址**: https://github.com/DavidChouu/SuzhouSocialPracticeByZhou
+- **网站地址**: https://davidchouu.github.io/SuzhouSocialPracticeByZhou/
 - **部署状态**: ✅ 正常运行
 
 ### 自动化部署

@@ -23,12 +23,16 @@
 ## 项目结构
 
 ```
-SuzhouAIHeritage/
+SuzhouSocialPracticeByZhou/
 ├── index.html              # 主页
 ├── css/
 │   └── style.css           # 主样式文件
 ├── js/
-│   └── main.js             # 主JavaScript文件
+│   ├── main.js             # 主JavaScript文件
+│   ├── carousel.js         # 轮播图功能
+│   ├── map.js              # 地图功能
+│   ├── performance.js      # 性能优化
+│   └── search.js           # 搜索功能
 ├── pages/                  # 子页面目录
 │   ├── companies.html      # 企业介绍页面
 │   ├── policies.html       # 政策支持页面
@@ -36,6 +40,8 @@ SuzhouAIHeritage/
 │   ├── news.html           # 近期动态页面
 │   └── about.html          # 关于我们页面
 ├── images/                 # 图片资源目录
+├── start.html              # 启动页面
+├── sw.js                   # Service Worker
 └── README.md               # 项目说明文档
 ```
 
