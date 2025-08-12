@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 - 苏州市人工智能赋能产业发展</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 50%, #5dade2 100%);
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .team-intro {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .team-intro-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .team-intro-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .team-intro-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .team-members {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: #4a90e2;
+        }
+
+        .member-header {
+            background: linear-gradient(45deg, #4a90e2, #357abd);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2.5rem;
+        }
+
+        .member-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-role {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .member-content {
+            padding: 2rem;
+        }
+
+        .member-college {
+            color: #4a90e2;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .member-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .member-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: #e3f2fd;
+            color: #4a90e2;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .advisor-section {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .advisor-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .advisor-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, #4a90e2, #357abd);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .advisor-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .advisor-title {
+            color: #4a90e2;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .advisor-college {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .advisor-description {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .research-goals {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .goal-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .goal-card:hover {
+            transform: translateY(-5px);
+            border-color: #4a90e2;
+        }
+
+        .goal-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #4a90e2, #357abd);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .goal-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .goal-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .contact-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-label {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .goals-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .advisor-card {
+                padding: 2rem;
+                margin: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>数智苏州前瞻调研</h1>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="companies.html" class="nav-link">企业介绍</a>
+                </li>
+                <li class="nav-item">
+                    <a href="policies.html" class="nav-link">政策支持</a>
+                </li>
+                <li class="nav-item">
+                    <a href="industry-map.html" class="nav-link">产业地图</a>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html" class="nav-link">近期动态</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link active">关于我们</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <header class="page-header">
+        <div class="hero-content">
+            <h1 class="page-title">关于我们</h1>
+            <p class="page-subtitle">数智苏州前瞻调研团</p>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main>
+        <!-- 团队介绍 -->
+        <section class="team-intro">
+            <div class="container">
+                <div class="team-intro-content">
+                    <h2>团队介绍</h2>
+                    <p>"数智苏州前瞻调研团"是由南京大学学生组成的暑期社会实践团队，致力于深入调研苏州市人工智能赋能产业发展现状。</p>
+                    <p>我们来自不同的学院和专业背景，通过跨学科合作，从多个角度分析苏州AI产业的发展模式、政策支持和未来趋势。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 团队成员 -->
+        <section class="team-members">
+            <div class="container">
+                <h2 class="section-title">团队成员</h2>
+                <div class="members-grid">
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-avatar">👨‍💼</div>
+                            <div class="member-name">李然</div>
+                            <div class="member-role">队长</div>
+                        </div>
+                        <div class="member-content">
+                            <div class="member-college">智能化软件与工程学院</div>
+                            <div class="member-description">
+                                负责团队整体协调和项目管理，具有丰富的团队领导经验和技术背景。
+                            </div>
+                            <div class="member-skills">
+                                <span class="skill-tag">项目管理</span>
+                                <span class="skill-tag">软件工程</span>
+                                <span class="skill-tag">团队协作</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-avatar">👨‍🎓</div>
+                            <div class="member-name">周梓昱</div>
+                            <div class="member-role">队员</div>
+                        </div>
+                        <div class="member-content">
+                            <div class="member-college">智能科学与技术学院</div>
+                            <div class="member-description">
+                                专注于AI技术研究和数据分析，负责技术调研和数据处理工作。
+                            </div>
+                            <div class="member-skills">
+                                <span class="skill-tag">人工智能</span>
+                                <span class="skill-tag">数据分析</span>
+                                <span class="skill-tag">机器学习</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-avatar">👨‍🔬</div>
+                            <div class="member-name">高致远</div>
+                            <div class="member-role">队员</div>
+                        </div>
+                        <div class="member-content">
+                            <div class="member-college">智能科学与技术学院</div>
+                            <div class="member-description">
+                                负责企业走访和访谈工作，具有优秀的沟通能力和调研经验。
+                            </div>
+                            <div class="member-skills">
+                                <span class="skill-tag">企业调研</span>
+                                <span class="skill-tag">沟通交流</span>
+                                <span class="skill-tag">访谈技巧</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-avatar">👨‍💻</div>
+                            <div class="member-name">郭鑫</div>
+                            <div class="member-role">队员</div>
+                        </div>
+                        <div class="member-content">
+                            <div class="member-college">智能科学与技术学院</div>
+                            <div class="member-description">
+                                负责政策研究和报告撰写，具有扎实的理论基础和写作能力。
+                            </div>
+                            <div class="member-skills">
+                                <span class="skill-tag">政策研究</span>
+                                <span class="skill-tag">报告撰写</span>
+                                <span class="skill-tag">理论分析</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 指导老师 -->
+        <section class="advisor-section">
+            <div class="container">
+                <h2 class="section-title">指导老师</h2>
+                <div class="advisor-card">
+                    <div class="advisor-avatar">👩‍🏫</div>
+                    <div class="advisor-name">宫建霞</div>
+                    <div class="advisor-title">指导老师</div>
+                    <div class="advisor-college">数字经济与管理学院</div>
+                    <div class="advisor-description">
+                        宫建霞老师是南京大学数字经济与管理学院的资深教授，在数字经济发展、产业政策研究等领域具有深厚的学术造诣和丰富的实践经验。她为本次调研提供了专业的指导和建议，确保调研工作的科学性和有效性。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 调研目标 -->
+        <section class="research-goals">
+            <div class="container">
+                <h2 class="section-title">调研目标</h2>
+                <div class="goals-grid">
+                    <div class="goal-card">
+                        <div class="goal-icon">🔍</div>
+                        <div class="goal-title">深入了解现状</div>
+                        <div class="goal-description">
+                            通过实地调研，深入了解苏州AI产业的发展现状、企业分布和技术应用情况。
+                        </div>
+                    </div>
+
+                    <div class="goal-card">
+                        <div class="goal-icon">📊</div>
+                        <div class="goal-title">分析发展模式</div>
+                        <div class="goal-description">
+                            分析苏州AI产业的发展模式、成功经验和面临的挑战，总结可推广的经验。
+                        </div>
+                    </div>
+
+                    <div class="goal-card">
+                        <div class="goal-icon">📋</div>
+                        <div class="goal-title">研究政策支持</div>
+                        <div class="goal-description">
+                            研究各级政府AI产业政策的实施效果，为政策优化提供建议。
+                        </div>
+                    </div>
+
+                    <div class="goal-card">
+                        <div class="goal-icon">🚀</div>
+                        <div class="goal-title">预测发展趋势</div>
+                        <div class="goal-description">
+                            基于调研数据，预测苏州AI产业的发展趋势和未来机遇。
+                        </div>
+                    </div>
+
+                    <div class="goal-card">
+                        <div class="goal-icon">💡</div>
+                        <div class="goal-title">提出发展建议</div>
+                        <div class="goal-description">
+                            为苏州AI产业进一步发展提出具体的政策建议和发展策略。
+                        </div>
+                    </div>
+
+                    <div class="goal-card">
+                        <div class="goal-icon">🌐</div>
+                        <div class="goal-title">推广成功经验</div>
+                        <div class="goal-description">
+                            将苏州的成功经验推广到其他地区，促进全国AI产业发展。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系方式 -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-content">
+                    <h2>联系我们</h2>
+                    <p>如果您对我们的调研工作感兴趣，或有任何问题和建议，欢迎与我们联系。</p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-label">邮箱</div>
+                            <div class="contact-value">suzhou-ai@nju.edu.cn</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">🏫</div>
+                            <div class="contact-label">学校</div>
+                            <div class="contact-value">南京大学</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📅</div>
+                            <div class="contact-label">调研时间</div>
+                            <div class="contact-value">2024年8月</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>数智苏州前瞻调研</h3>
+                    <p>探索AI产业发展，助力数字经济建设</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="companies.html">企业介绍</a></li>
+                        <li><a href="policies.html">政策支持</a></li>
+                        <li><a href="industry-map.html">产业地图</a></li>
+                        <li><a href="news.html">近期动态</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <p>南京大学数智苏州前瞻调研团</p>
+                    <p>© 2024 苏州市人工智能赋能产业发展调研网站</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
