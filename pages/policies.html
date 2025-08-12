@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>政策支持 - 苏州市人工智能赋能产业发展</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 50%, #5dade2 100%);
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .policies-intro {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .policies-intro-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .policies-intro-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .policies-intro-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .policy-levels {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .policy-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .policy-tab {
+            padding: 1rem 2rem;
+            background: #f8f9fa;
+            border: 2px solid transparent;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .policy-tab.active,
+        .policy-tab:hover {
+            background: #4a90e2;
+            color: white;
+            border-color: #4a90e2;
+        }
+
+        .policy-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .policy-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .policy-section.active {
+            display: block;
+        }
+
+        .policy-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .policy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: #4a90e2;
+        }
+
+        .policy-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .policy-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #4a90e2, #357abd);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .policy-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .policy-subtitle {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .policy-description {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .policy-highlights {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .policy-highlights h4 {
+            color: #4a90e2;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .highlight-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e0e0e0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .highlight-list li:last-child {
+            border-bottom: none;
+        }
+
+        .highlight-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4a90e2;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .policy-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .detail-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .detail-title {
+            font-weight: 600;
+            color: #4a90e2;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-content {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .policy-timeline {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+            border-radius: 15px;
+        }
+
+        .timeline-title {
+            color: #4a90e2;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .timeline-date {
+            background: #4a90e2;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 1rem;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .timeline-content {
+            color: #333;
+            font-weight: 500;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .policy-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .policy-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .policy-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .policy-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .timeline-date {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>数智苏州前瞻调研</h1>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="companies.html" class="nav-link">企业介绍</a>
+                </li>
+                <li class="nav-item">
+                    <a href="policies.html" class="nav-link active">政策支持</a>
+                </li>
+                <li class="nav-item">
+                    <a href="industry-map.html" class="nav-link">产业地图</a>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html" class="nav-link">近期动态</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">关于我们</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <header class="page-header">
+        <div class="hero-content">
+            <h1 class="page-title">政策支持</h1>
+            <p class="page-subtitle">四级政策体系助力AI产业发展</p>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main>
+        <!-- 政策介绍 -->
+        <section class="policies-intro">
+            <div class="container">
+                <div class="policies-intro-content">
+                    <h2>AI产业发展政策体系</h2>
+                    <p>苏州AI产业的快速发展离不开各级政府的大力支持。从国家战略到地方政策，形成了完整的政策支持体系。</p>
+                    <p>这些政策在资金支持、人才培养、技术创新、产业集聚等方面为AI企业提供了全方位的保障。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 政策层级展示 -->
+        <section class="policy-levels">
+            <div class="container">
+                <h2 class="section-title">政策层级</h2>
+                
+                <!-- 政策标签 -->
+                <div class="policy-tabs">
+                    <div class="policy-tab active" onclick="showPolicy('national')">国家层面</div>
+                    <div class="policy-tab" onclick="showPolicy('provincial')">江苏省政府</div>
+                    <div class="policy-tab" onclick="showPolicy('municipal')">苏州市政府</div>
+                    <div class="policy-tab" onclick="showPolicy('district')">区政府</div>
+                </div>
+
+                <div class="policy-content">
+                    <!-- 国家层面政策 -->
+                    <div id="national" class="policy-section active">
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <div class="policy-icon">🏛️</div>
+                                <div>
+                                    <div class="policy-title">国家人工智能发展规划</div>
+                                    <div class="policy-subtitle">国务院发布的国家级战略规划</div>
+                                </div>
+                            </div>
+                            <div class="policy-description">
+                                国家层面高度重视人工智能发展，将其作为新一轮科技革命和产业变革的核心驱动力，制定了全面的发展规划和政策体系。
+                            </div>
+                            <div class="policy-highlights">
+                                <h4>政策亮点</h4>
+                                <ul class="highlight-list">
+                                    <li>将AI列为国家战略性新兴产业</li>
+                                    <li>设立国家AI创新平台和实验室</li>
+                                    <li>加大AI基础研究和应用研究投入</li>
+                                    <li>推动AI与实体经济深度融合</li>
+                                    <li>建立AI人才培养体系</li>
+                                </ul>
+                            </div>
+                            <div class="policy-details">
+                                <div class="detail-item">
+                                    <div class="detail-title">资金支持</div>
+                                    <div class="detail-content">设立专项基金，支持AI核心技术研发和产业化</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-title">税收优惠</div>
+                                    <div class="detail-content">对AI企业给予研发费用加计扣除等税收优惠</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-title">人才培养</div>
+                                    <div class="detail-content">建设AI学院，培养高层次AI人才</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 江苏省政府政策 -->
+                    <div id="provincial" class="policy-section">
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <div class="policy-icon">🏢</div>
+                                <div>
+                                    <div class="policy-title">江苏省AI产业发展行动计划</div>
+                                    <div class="policy-subtitle">省政府制定的省级发展规划</div>
+                                </div>
+                            </div>
+                            <div class="policy-description">
+                                江苏省作为经济大省，在AI产业发展方面走在全国前列，制定了详细的行动计划和配套政策。
+                            </div>
+                            <div class="policy-highlights">
+                                <h4>政策亮点</h4>
+                                <ul class="highlight-list">
+                                    <li>建设AI产业创新中心</li>
+                                    <li>打造AI产业集群</li>
+                                    <li>支持AI企业上市融资</li>
+                                    <li>建设AI人才培养基地</li>
+                                    <li>推动AI应用示范</li>
+                                </ul>
+                            </div>
+                            <div class="policy-details">
+                                <div class="detail-item">
+                                    <div class="detail-title">产业布局</div>
+                                    <div class="detail-content">重点布局南京、苏州、无锡等AI产业集聚区</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-title">资金投入</div>
+                                    <div class="detail-content">设立省级AI产业发展专项资金</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-title">平台建设</div>
+                                    <div class="detail-content">建设AI开放创新平台和公共服务平台</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 苏州市政府政策 -->
+                    <div id="municipal" class="policy-section">
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <div class="policy-icon">🏙️</div>
+                                <div>
+                                    <div class="policy-title">苏州市AI产业发展三年行动计划</div>
+                                    <div class="policy-subtitle">市政府制定的市级发展规划</div>
+                                </div>
+                            </div>
+                            <div class="policy-description">
+                                苏州市作为长三角重要城市，制定了详细的AI产业发展计划，在政策支持、资金投入、人才培养等方面给予大力支持。
+                            </div>
+                            <div class="policy-highlights">
+                                <h4>政策亮点</h4>
+                                <ul class="highlight-list">
+                                    <li>建设AI产业园区</li>
+                                    <li>设立AI产业发展基金</li>
+                                    <li>引进AI领军企业和人才</li>
+                                    <li>建设AI创新中心</li>
+                                    <li>推动AI应用场景建设</li>
+                                </ul>
+                            </div>
+                            <div class="policy-details">
+                                <div class="detail-item">
+                                    <div class="detail-title">园区建设</div>
+                                    <div class="detail-content">建设苏州工业园区AI产业园等专业园区</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-title">人才政策</div>
+                                    <div class="detail-content">实施"姑苏人才计划"，引进AI高端人才</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-title">应用示范</div>
+                                    <div class="detail-content">建设AI应用示范项目，推动技术落地</div>
+                                </div>
+                            </div>
+                            <div class="policy-timeline">
+                                <div class="timeline-title">政策时间线</div>
+                                <div class="timeline-item">
+                                    <div class="timeline-date">2023年</div>
+                                    <div class="timeline-content">发布AI产业发展三年行动计划</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-date">2024年</div>
+                                    <div class="timeline-content">建设AI产业园区，引进重点企业</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-date">2025年</div>
+                                    <div class="timeline-content">形成完整的AI产业生态体系</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 区政府政策 -->
+                    <div id="district" class="policy-section">
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <div class="policy-icon">🏘️</div>
+                                <div>
+                                    <div class="policy-title">各区AI产业扶持政策</div>
+                                    <div class="policy-subtitle">各区制定的具体扶持措施</div>
+                                </div>
+                            </div>
+                            <div class="policy-description">
+                                苏州各区根据自身产业特点，制定了针对性的AI产业扶持政策，为企业发展提供精准支持。
+                            </div>
+                            <div class="policy-highlights">
+                                <h4>政策亮点</h4>
+                                <ul class="highlight-list">
+                                    <li>提供办公场地租金补贴</li>
+                                    <li>设立区级AI产业发展资金</li>
+                                    <li>提供人才公寓和住房补贴</li>
+                                    <li>建设AI公共服务平台</li>
+                                    <li>提供行政审批绿色通道</li>
+                                </ul>
+                            </div>
+                            <div class="policy-details">
+                                <div class="detail-item">
+                                    <div class="detail-title">工业园区</div>
+                                    <div class="detail-content">重点发展智能制造和工业AI应用</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-title">高新区</div>
+                                    <div class="detail-content">重点发展AI算法和软件服务</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-title">相城区</div>
+                                    <div class="detail-content">重点发展AI硬件和芯片产业</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>数智苏州前瞻调研</h3>
+                    <p>探索AI产业发展，助力数字经济建设</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="companies.html">企业介绍</a></li>
+                        <li><a href="policies.html">政策支持</a></li>
+                        <li><a href="industry-map.html">产业地图</a></li>
+                        <li><a href="news.html">近期动态</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <p>南京大学数智苏州前瞻调研团</p>
+                    <p>© 2024 苏州市人工智能赋能产业发展调研网站</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        function showPolicy(level) {
+            // 隐藏所有政策内容
+            document.querySelectorAll('.policy-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // 移除所有活动状态
+            document.querySelectorAll('.policy-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 显示选中的政策内容
+            document.getElementById(level).classList.add('active');
+            
+            // 添加活动状态
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
