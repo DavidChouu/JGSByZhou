@@ -42,7 +42,7 @@ class SearchEngine {
         
         searchContainer.innerHTML = `
             <div class="search-header" style="margin-bottom: 1rem;">
-                <h3 style="margin: 0; color: #333; font-size: 1.2rem;">搜索井冈山文化遗产</h3>
+                <h3 style="margin: 0; color: #333; font-size: 1.2rem;">搜索苏州AI产业发展</h3>
             </div>
             <div class="search-input-container" style="margin-bottom: 1rem;">
                 <input type="text" class="search-input" placeholder="输入关键词搜索..." 
@@ -121,77 +121,77 @@ class SearchEngine {
     }
     
     loadSearchData() {
-        // 井冈山文化遗产搜索数据
+        // 苏州AI产业发展搜索数据
         this.searchData = [
             {
-                title: '井冈山革命根据地',
-                content: '井冈山革命根据地是中国第一个农村革命根据地，由毛泽东同志创建于1927年。',
-                url: 'pages/history.html',
-                category: '历史背景',
-                keywords: ['井冈山', '革命', '根据地', '毛泽东', '1927']
+                title: '苏州AI产业发展现状',
+                content: '苏州作为长三角重要城市，在人工智能产业发展方面取得了显著成就，形成了完整的AI产业生态。',
+                url: 'index.html',
+                category: '产业发展',
+                keywords: ['苏州', 'AI', '人工智能', '产业', '发展']
             },
             {
-                title: '毛泽东同志',
-                content: '毛泽东同志是伟大的马克思主义者，在井冈山时期开创了农村包围城市的革命道路。',
-                url: 'pages/figures.html',
-                category: '历史人物',
-                keywords: ['毛泽东', '革命', '井冈山', '领袖']
+                title: '独角兽企业',
+                content: '苏州拥有多家AI领域的独角兽企业，在智能制造、自动驾驶、医疗AI等领域处于领先地位。',
+                url: 'pages/companies.html',
+                category: '企业介绍',
+                keywords: ['独角兽', '企业', '智能制造', '自动驾驶', '医疗AI']
             },
             {
-                title: '朱德同志',
-                content: '朱德同志是中国人民解放军的主要缔造者之一，在井冈山时期与毛泽东同志密切配合。',
-                url: 'pages/figures.html',
-                category: '历史人物',
-                keywords: ['朱德', '军事', '井冈山', '元帅']
+                title: '优质企业',
+                content: '苏州聚集了大量优质AI企业，涵盖算法、芯片、应用等多个产业链环节。',
+                url: 'pages/companies.html',
+                category: '企业介绍',
+                keywords: ['优质企业', '算法', '芯片', '应用', '产业链']
             },
             {
-                title: '黄洋界哨口',
-                content: '黄洋界是井冈山五大哨口之一，1928年8月30日在这里发生了著名的黄洋界保卫战。',
-                url: 'pages/sites.html',
-                category: '重要遗址',
-                keywords: ['黄洋界', '哨口', '保卫战', '1928']
+                title: '国家政策支持',
+                content: '国家层面出台多项政策支持AI产业发展，为苏州AI产业提供了良好的政策环境。',
+                url: 'pages/policies.html',
+                category: '政策支持',
+                keywords: ['国家政策', 'AI产业', '政策环境', '支持']
             },
             {
-                title: '茨坪革命旧址群',
-                content: '茨坪是井冈山革命根据地的政治、军事、经济中心，保存着大量革命旧址。',
-                url: 'pages/sites.html',
-                category: '重要遗址',
-                keywords: ['茨坪', '旧址', '政治中心', '革命']
+                title: '江苏省政策',
+                content: '江苏省政府制定专项政策，支持苏州AI产业创新发展，打造AI产业高地。',
+                url: 'pages/policies.html',
+                category: '政策支持',
+                keywords: ['江苏省', '政策', '创新发展', '产业高地']
             },
             {
-                title: '小井红军医院',
-                content: '小井红军医院是井冈山革命根据地时期建立的红军医院，体现了红军的人道主义精神。',
-                url: 'pages/sites.html',
-                category: '重要遗址',
-                keywords: ['小井', '医院', '红军', '医疗']
+                title: '苏州市政策',
+                content: '苏州市政府出台具体措施，从资金、人才、平台等方面支持AI产业发展。',
+                url: 'pages/policies.html',
+                category: '政策支持',
+                keywords: ['苏州市', '政策', '资金', '人才', '平台']
             },
             {
-                title: '井冈山精神',
-                content: '井冈山精神包括坚定信念、艰苦奋斗、实事求是、依靠群众、敢闯新路、勇于胜利。',
-                url: 'pages/culture.html',
-                category: '文化传承',
-                keywords: ['井冈山精神', '信念', '奋斗', '实事求是']
+                title: '产业地图',
+                content: '苏州AI产业在地理上形成了多个集聚区，包括工业园区、高新区等核心区域。',
+                url: 'pages/industry-map.html',
+                category: '产业布局',
+                keywords: ['产业地图', '集聚区', '工业园区', '高新区', '核心区域']
             },
             {
-                title: '坚定信念',
-                content: '坚定信念是井冈山精神的灵魂，革命先辈们始终坚信革命必胜。',
-                url: 'pages/culture.html',
-                category: '文化传承',
-                keywords: ['信念', '精神', '革命', '理想']
+                title: '调研动态',
+                content: '南京大学数智苏州前瞻调研团深入企业调研，了解AI产业发展现状和趋势。',
+                url: 'pages/news.html',
+                category: '调研活动',
+                keywords: ['调研', '南京大学', '数智苏州', '企业', '趋势']
             },
             {
-                title: '艰苦奋斗',
-                content: '艰苦奋斗是井冈山精神的本质特征，体现了红军战士顽强的革命意志。',
-                url: 'pages/culture.html',
-                category: '文化传承',
-                keywords: ['奋斗', '艰苦', '意志', '精神']
+                title: '团队介绍',
+                content: '数智苏州前瞻调研团由南京大学学生组成，致力于研究苏州AI产业发展。',
+                url: 'pages/about.html',
+                category: '团队信息',
+                keywords: ['团队', '南京大学', '学生', '研究', 'AI产业']
             },
             {
-                title: '实事求是',
-                content: '实事求是是井冈山精神的核心，体现了马克思主义与中国实际相结合的科学态度。',
-                url: 'pages/culture.html',
-                category: '文化传承',
-                keywords: ['实事求是', '科学', '态度', '马克思主义']
+                title: 'AI技术应用',
+                content: '苏州AI技术在智能制造、智慧城市、医疗健康等领域得到广泛应用。',
+                url: 'index.html',
+                category: '技术应用',
+                keywords: ['AI技术', '智能制造', '智慧城市', '医疗健康', '应用']
             }
         ];
     }

@@ -57,7 +57,7 @@ class Carousel {
         
         // 添加示例幻灯片（占位图片）
         const slideData = [
-            { title: '井冈山风光', description: '巍峨的井冈山，革命的摇篮' },
+            { title: '苏州AI产业园区', description: '现代化的AI产业园区，创新发展的摇篮' },
             { title: '黄洋界哨口', description: '红军战斗过的地方' },
             { title: '茨坪革命旧址', description: '革命先辈工作生活的地方' },
             { title: '小井红军医院', description: '红军医疗事业的重要见证' }

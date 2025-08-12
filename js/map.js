@@ -1,4 +1,4 @@
-// 井冈山地图组件
+// 苏州AI产业地图组件
 class JinggangshanMap {
     constructor(container, options = {}) {
         this.container = container;
@@ -44,7 +44,7 @@ class JinggangshanMap {
             color: #333;
             z-index: 10;
         `;
-        mapTitle.textContent = '井冈山革命遗址分布图';
+        mapTitle.textContent = '苏州AI产业分布图';
         
         this.mapContainer.appendChild(mapTitle);
         this.container.appendChild(this.mapContainer);

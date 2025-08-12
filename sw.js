@@ -1,4 +1,4 @@
-// Service Worker for 井冈山文化遗产网站
+// Service Worker for 苏州AI产业发展调研网站
 const CACHE_NAME = 'jinggangshan-cache-v1';
 const urlsToCache = [
     '/',
@@ -90,7 +90,7 @@ const offlinePage = `
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>离线 - 井冈山文化遗产</title>
+                    <title>离线 - 苏州AI产业发展调研</title>
     <style>
         body {
             font-family: 'Noto Sans SC', sans-serif;
@@ -143,7 +143,7 @@ const offlinePage = `
         <div class="offline-icon">📡</div>
         <h1 class="offline-title">网络连接中断</h1>
         <p class="offline-message">
-            您当前处于离线状态，无法访问井冈山文化遗产网站。
+                            您当前处于离线状态，无法访问苏州AI产业发展调研网站。
             请检查网络连接后重试。
         </p>
         <button class="retry-button" onclick="window.location.reload()">
