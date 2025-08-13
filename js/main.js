@@ -54,6 +54,28 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('load', function() {
         document.body.classList.add('loaded');
     });
+    
+    // 处理英雄区域背景图片加载
+    function handleHeroImage() {
+        const hero = document.querySelector('.hero');
+        if (!hero) return;
+        
+        // 创建测试图片来检查网络图片是否可用
+        const testImg = new Image();
+        testImg.onload = function() {
+            // 图片加载成功，保持当前样式
+            console.log('Hero background image loaded successfully');
+        };
+        testImg.onerror = function() {
+            // 图片加载失败，使用备用方案
+            hero.classList.add('no-image');
+            console.log('Hero background image failed to load, using fallback');
+        };
+        testImg.src = 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
+    }
+    
+    // 页面加载时处理图片
+    handleHeroImage();
 
     // 滚动动画
     const observerOptions = {

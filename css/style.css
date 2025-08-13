@@ -98,6 +98,10 @@ body {
     margin-top: 70px;
     position: relative;
     overflow: hidden;
+    background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .hero::before {
@@ -107,8 +111,25 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, rgba(33, 150, 243, 0.1) 0%, rgba(25, 118, 210, 0.1) 50%, rgba(21, 101, 192, 0.1) 100%);
+    background: linear-gradient(135deg,
+            rgba(33, 150, 243, 0.85) 0%,
+            rgba(25, 118, 210, 0.8) 25%,
+            rgba(21, 101, 192, 0.75) 50%,
+            rgba(13, 71, 161, 0.8) 75%,
+            rgba(1, 87, 155, 0.85) 100%);
     animation: gradientShift 8s ease-in-out infinite;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="overlay" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23overlay)"/></svg>');
+    opacity: 0.3;
+    pointer-events: none;
 }
 
 @keyframes gradientShift {
@@ -126,6 +147,28 @@ body {
 .hero-content {
     max-width: 800px;
     padding: 0 20px;
+    position: relative;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    animation: fadeInUp 1s ease-out 0.5s both;
 }
 
 .hero-title {
@@ -398,12 +441,26 @@ body {
         display: flex;
     }
 
+    .hero {
+        background-attachment: scroll;
+    }
+
+    .hero-content {
+        padding: 2rem;
+        margin: 0 1rem;
+    }
+
     .hero-title {
         font-size: 2.5rem;
     }
 
     .hero-subtitle {
         font-size: 1.2rem;
+    }
+
+    .hero-badge {
+        font-size: 0.8rem;
+        padding: 0.4rem 1rem;
     }
 
     .intro-content {
@@ -667,4 +724,27 @@ body.loaded .hero {
     .news-card {
         padding: 1.5rem;
     }
+}
+
+/* 备用背景图片方案 */
+.hero-fallback {
+    background-image: 
+        linear-gradient(135deg, 
+            rgba(33, 150, 243, 0.9) 0%, 
+            rgba(25, 118, 210, 0.85) 25%, 
+            rgba(21, 101, 192, 0.8) 50%, 
+            rgba(13, 71, 161, 0.85) 75%, 
+            rgba(1, 87, 155, 0.9) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%23e3f2fd;stop-opacity:1" /><stop offset="100%" style="stop-color:%23bbdefb;stop-opacity:1" /></linearGradient><linearGradient id="water" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%234a90e2;stop-opacity:0.8" /><stop offset="100%" style="stop-color:%231976d2;stop-opacity:0.9" /></linearGradient></defs><rect width="1200" height="800" fill="url(%23sky)"/><ellipse cx="600" cy="600" rx="400" ry="150" fill="url(%23water)"/><circle cx="200" cy="150" r="40" fill="%23ffd54f" opacity="0.8"/><circle cx="1000" cy="200" r="30" fill="%23ffd54f" opacity="0.6"/><circle cx="300" cy="100" r="20" fill="%23ffd54f" opacity="0.4"/></svg>');
+}
+
+/* 图片加载失败时的备用方案 */
+.hero.no-image {
+    background-image: 
+        linear-gradient(135deg, 
+            rgba(33, 150, 243, 0.95) 0%, 
+            rgba(25, 118, 210, 0.9) 25%, 
+            rgba(21, 101, 192, 0.85) 50%, 
+            rgba(13, 71, 161, 0.9) 75%, 
+            rgba(1, 87, 155, 0.95) 100%);
 }
