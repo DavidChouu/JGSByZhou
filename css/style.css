@@ -98,7 +98,7 @@ body {
     margin-top: 70px;
     position: relative;
     overflow: hidden;
-    background-image: url('/Users/ziyuzhou/Pictures/金鸡湖/金鸡湖3.jpg');
+    background-image: url('/Users/ziyuzhou/SocialPracticeFor-AI-inSuzhou/SuzhouSocialPracticeByZhou/images/金鸡湖/金鸡湖3.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -169,6 +169,36 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
     animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.hero-location-badge {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-style: italic;
+    font-weight: 400;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    animation: fadeInUp 1s ease-out 1s both;
+}
+
+.hero-location-badge:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.hero-location-badge span {
+    font-family: 'Inter', 'Source Han Sans SC', sans-serif;
+    letter-spacing: 0.02em;
 }
 
 .hero-title {
@@ -461,6 +491,13 @@ body {
     .hero-badge {
         font-size: 0.8rem;
         padding: 0.4rem 1rem;
+    }
+    
+    .hero-location-badge {
+        bottom: 20px;
+        right: 20px;
+        padding: 0.6rem 1rem;
+        font-size: 0.75rem;
     }
 
     .intro-content {
