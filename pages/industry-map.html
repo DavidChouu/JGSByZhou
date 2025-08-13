@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>产业地图 - 苏州市人工智能赋能产业发展</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Han+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
     <style>
         .page-header {
             background: linear-gradient(135deg, #4a90e2 0%, #357abd 50%, #5dade2 100%);
@@ -22,7 +25,7 @@
             font-size: 3rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .page-subtitle {
@@ -66,7 +69,7 @@
             background: #f8f9fa;
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .map-area {
@@ -88,13 +91,13 @@
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .map-point:hover {
             transform: scale(1.3);
             background: #ff6b35;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .map-point.active {
@@ -131,7 +134,7 @@
             padding: 0.5rem 1rem;
             background: white;
             border-radius: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .legend-dot {
@@ -165,7 +168,7 @@
             background: white;
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
             border: 2px solid transparent;
         }
@@ -235,22 +238,23 @@
             .page-title {
                 font-size: 2rem;
             }
-            
+
             .map-area {
                 height: 400px;
             }
-            
+
             .map-legend {
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .district-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
@@ -311,32 +315,32 @@
         <section class="map-container">
             <div class="container">
                 <h2 class="section-title">产业分布地图</h2>
-                
+
                 <div class="map-wrapper">
                     <div class="map-area" id="industry-map">
                         <!-- 工业园区 -->
                         <div class="map-point unicorn" style="top: 30%; left: 25%;" data-company="sip-ai"></div>
                         <div class="map-point" style="top: 35%; left: 30%;" data-company="sip-tech"></div>
                         <div class="map-point" style="top: 40%; left: 20%;" data-company="sip-manufacturing"></div>
-                        
+
                         <!-- 高新区 -->
                         <div class="map-point unicorn" style="top: 45%; left: 60%;" data-company="snd-ai"></div>
                         <div class="map-point" style="top: 50%; left: 65%;" data-company="snd-software"></div>
                         <div class="map-point" style="top: 55%; left: 55%;" data-company="snd-research"></div>
-                        
+
                         <!-- 相城区 -->
                         <div class="map-point" style="top: 60%; left: 40%;" data-company="xc-hardware"></div>
                         <div class="map-point" style="top: 65%; left: 45%;" data-company="xc-chip"></div>
-                        
+
                         <!-- 姑苏区 -->
                         <div class="map-point" style="top: 25%; left: 50%;" data-company="gs-culture"></div>
                         <div class="map-point" style="top: 30%; left: 55%;" data-company="gs-tourism"></div>
-                        
+
                         <!-- 吴中区 -->
                         <div class="map-point" style="top: 70%; left: 35%;" data-company="wz-agriculture"></div>
                         <div class="map-point" style="top: 75%; left: 40%;" data-company="wz-logistics"></div>
                     </div>
-                    
+
                     <!-- 图例 -->
                     <div class="map-legend">
                         <div class="legend-item">
@@ -490,4 +494,5 @@
 
     <script src="../js/main.js"></script>
 </body>
+
 </html>
