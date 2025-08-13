@@ -436,6 +436,26 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
+        /* B站播放器容器（替换占位后使用） */
+        .bili-player-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 16 / 9;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(33, 150, 243, 0.4);
+            background: #000;
+        }
+
+        .bili-player-wrapper iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         .video-placeholder:hover {
             transform: translateY(-10px);
             box-shadow: 0 30px 80px rgba(33, 150, 243, 0.6);
@@ -1243,33 +1263,81 @@
     <script>
         // Vlog视频区域交互功能
         document.addEventListener('DOMContentLoaded', function () {
+            const videoContainer = document.querySelector('.vlog-video-container');
             const videoPlaceholder = document.querySelector('.video-placeholder');
             const playButton = document.querySelector('.play-button');
 
+            // 解析输入中的 BV 号（或完整链接、含参数的分享链接）
+            function extractBvid(input) {
+                if (!input) return '';
+                // BV 直链或文本中的 BV 号
+                const m = input.match(/BV[0-9A-Za-z]+/);
+                if (m) return m[0];
+                // 兼容 av 号（会被B站自动跳转），这里仍可用
+                const av = input.match(/av(\d{5,})/i);
+                if (av) return `av${av[1]}`;
+                return '';
+            }
+
+            function buildBilibiliPlayerUrl(id) {
+                if (!id) return '';
+                // 使用官方嵌入地址；优先 bvid
+                const params = `autoplay=1&high_quality=1&danmaku=0&as_wide=1`;
+                if (id.startsWith('BV')) return `https://player.bilibili.com/player.html?bvid=${id}&${params}`;
+                return `https://player.bilibili.com/player.html?aid=${id.replace(/^av/i, '')}&${params}`;
+            }
+
+            function embedBilibili(id) {
+                const url = buildBilibiliPlayerUrl(id);
+                if (!url || !videoContainer) return;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'bili-player-wrapper';
+                wrapper.innerHTML = `<iframe src="${url}" allowfullscreen="true" scrolling="no" referrerpolicy="no-referrer"></iframe>`;
+                videoContainer.innerHTML = '';
+                videoContainer.appendChild(wrapper);
+            }
+
+            function promptAndEmbed() {
+                const input = prompt('请输入B站视频BV号或链接：\n例如：BV1xx411c7mD 或 https://www.bilibili.com/video/BV1xx411c7mD');
+                const id = extractBvid(input || '');
+                if (!id) {
+                    alert('未识别到有效的BV号，请重新输入。');
+                    return;
+                }
+                localStorage.setItem('vlogBvid', id);
+                // 可选：把bv写入URL，便于分享
+                const url = new URL(window.location.href);
+                url.searchParams.set('bv', id);
+                history.replaceState(null, '', url.toString());
+                embedBilibili(id);
+            }
+
             if (videoPlaceholder && playButton) {
-                // 点击视频区域或播放按钮的事件
-                const handleVideoClick = function () {
-                    // 这里可以添加视频播放逻辑
-                    // 例如：打开模态框播放视频、跳转到视频页面等
-                    alert('视频播放功能即将上线！\n\n您可以在这里插入企业参观的vlog视频。\n\n建议视频内容：\n• 企业实地考察\n• 专家访谈\n• 技术展示\n• 发展洞察');
-                };
+                // 点击事件：输入BV并嵌入
+                videoPlaceholder.addEventListener('click', promptAndEmbed);
+                playButton.addEventListener('click', promptAndEmbed);
 
-                videoPlaceholder.addEventListener('click', handleVideoClick);
-                playButton.addEventListener('click', handleVideoClick);
-
-                // 添加键盘事件支持
+                // 键盘无障碍
                 videoPlaceholder.addEventListener('keydown', function (e) {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
-                        handleVideoClick();
+                        promptAndEmbed();
                     }
                 });
 
-                // 设置可访问性
+                // 可访问性属性
                 videoPlaceholder.setAttribute('tabindex', '0');
                 videoPlaceholder.setAttribute('role', 'button');
-                videoPlaceholder.setAttribute('aria-label', '播放企业参观Vlog视频');
+                videoPlaceholder.setAttribute('aria-label', '播放企业参观Vlog视频（支持B站BV号）');
             }
+
+            // 自动加载：优先URL参数 ?bv=，其次 localStorage
+            (function autoLoadBili() {
+                const urlBv = new URLSearchParams(window.location.search).get('bv');
+                const stored = localStorage.getItem('vlogBvid');
+                const id = extractBvid(urlBv || stored || '');
+                if (id) embedBilibili(id);
+            })();
 
             // 添加滚动动画效果
             const observerOptions = {
