@@ -98,7 +98,7 @@ body {
     margin-top: 70px;
     position: relative;
     overflow: hidden;
-    background-image: url('/Users/ziyuzhou/SocialPracticeFor-AI-inSuzhou/SuzhouSocialPracticeByZhou/images/金鸡湖/金鸡湖3.jpg');
+    background-image: url('../images/金鸡湖/金鸡湖3.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -492,7 +492,7 @@ body {
         font-size: 0.8rem;
         padding: 0.4rem 1rem;
     }
-    
+
     .hero-location-badge {
         bottom: 20px;
         right: 20px;
@@ -765,23 +765,23 @@ body.loaded .hero {
 
 /* 备用背景图片方案 */
 .hero-fallback {
-    background-image: 
-        linear-gradient(135deg, 
-            rgba(33, 150, 243, 0.9) 0%, 
-            rgba(25, 118, 210, 0.85) 25%, 
-            rgba(21, 101, 192, 0.8) 50%, 
-            rgba(13, 71, 161, 0.85) 75%, 
+    background-image:
+        linear-gradient(135deg,
+            rgba(33, 150, 243, 0.9) 0%,
+            rgba(25, 118, 210, 0.85) 25%,
+            rgba(21, 101, 192, 0.8) 50%,
+            rgba(13, 71, 161, 0.85) 75%,
             rgba(1, 87, 155, 0.9) 100%),
         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%23e3f2fd;stop-opacity:1" /><stop offset="100%" style="stop-color:%23bbdefb;stop-opacity:1" /></linearGradient><linearGradient id="water" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%234a90e2;stop-opacity:0.8" /><stop offset="100%" style="stop-color:%231976d2;stop-opacity:0.9" /></linearGradient></defs><rect width="1200" height="800" fill="url(%23sky)"/><ellipse cx="600" cy="600" rx="400" ry="150" fill="url(%23water)"/><circle cx="200" cy="150" r="40" fill="%23ffd54f" opacity="0.8"/><circle cx="1000" cy="200" r="30" fill="%23ffd54f" opacity="0.6"/><circle cx="300" cy="100" r="20" fill="%23ffd54f" opacity="0.4"/></svg>');
 }
 
 /* 图片加载失败时的备用方案 */
 .hero.no-image {
-    background-image: 
-        linear-gradient(135deg, 
-            rgba(33, 150, 243, 0.95) 0%, 
-            rgba(25, 118, 210, 0.9) 25%, 
-            rgba(21, 101, 192, 0.85) 50%, 
-            rgba(13, 71, 161, 0.9) 75%, 
+    background-image:
+        linear-gradient(135deg,
+            rgba(33, 150, 243, 0.95) 0%,
+            rgba(25, 118, 210, 0.9) 25%,
+            rgba(21, 101, 192, 0.85) 50%,
+            rgba(13, 71, 161, 0.9) 75%,
             rgba(1, 87, 155, 0.95) 100%);
 }

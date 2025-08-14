@@ -49,7 +49,7 @@ class PerformanceOptimizer {
     addServiceWorker() {
         if ('serviceWorker' in navigator) {
             // 创建简单的缓存策略
-            const cacheName = 'jinggangshan-cache-v1';
+            const cacheName = 'suzhouai-cache-v1';
             const urlsToCache = [
                 '/',
                 '/css/style.css',
@@ -64,7 +64,8 @@ class PerformanceOptimizer {
             ];
             
             // 安装Service Worker
-            navigator.serviceWorker.register('/sw.js').then(registration => {
+            // GitHub Pages 项目页下需使用相对路径注册 SW
+            navigator.serviceWorker.register('sw.js').then(registration => {
                 console.log('Service Worker registered');
             }).catch(error => {
                 console.log('Service Worker registration failed:', error);
