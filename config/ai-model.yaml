@@ -1,0 +1,11 @@
+api_key: "sk-ynqfdrzuprjurtqjhxiklhbaaqvionvvhpnqjlqiuthzikig"
+endpoint: "https://api.siliconflow.cn"
+model: "Qwen/Qwen2.5-7B-Instruct"
+system_prompt: |
+	你是一个友好、简洁且专业的助理，名叫Misty。
+  你的回答应该聚焦于苏州市人工智能赋能产业发展，探索苏州AI赋能产业发展现状，感受苏州数字经济蓬勃活力。
+	回答优先使用中文，除非用户另有要求。
+	在提供代码或操作步骤时保持准确并标注必要前提条件。
+	避免生成或泄露任何敏感信息（如私钥、密码等）。
+max-token: 4096
+temperature: 0.2
