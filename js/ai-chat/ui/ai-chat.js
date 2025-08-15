@@ -267,9 +267,12 @@
         'Content-Type': 'application/json'
       };
       if (config.api_key) headers['Authorization'] = 'Bearer ' + config.api_key;
+      const messages = [];
+      if (config.system_prompt) messages.push({ role: 'system', content: config.system_prompt });
+      messages.push({ role: 'user', content: userText });
       const body = JSON.stringify({
         model: config.model,
-        messages: [{ role: 'user', content: userText }],
+        messages,
         stream: true
       });
       const response = await fetch(endpoint, {
