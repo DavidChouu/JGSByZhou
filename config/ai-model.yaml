@@ -1,0 +1,3 @@
+api_key: "sk-ynqfdrzuprjurtqjhxiklhbaaqvionvvhpnqjlqiuthzikig"
+endpoint: "https://api.siliconcloud.com/v1/chat/completions"
+model: "Qwen/Qwen2.5-7B-Instruct"
