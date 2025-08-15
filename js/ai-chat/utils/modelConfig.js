@@ -34,9 +34,18 @@ export async function loadModelConfig() {
       continue;
     }
     // 匹配 simple key: "value" 或 key: value
-    const match = line.match(/^\s*(\w+):\s*["']?(.+?)["']?\s*$/);
+    // 支持键名包含连字符，例如 max-token，也支持数字和布尔值的简单识别。
+    const match = line.match(/^\s*([A-Za-z0-9_\-]+):\s*["']?(.+?)["']?\s*$/);
     if (match) {
-      config[match[1]] = match[2];
+      const key = match[1];
+      let val = match[2];
+      // 如果是数字，转为 Number
+      if (/^[0-9]+(\.[0-9]+)?$/.test(val)) {
+        val = Number(val);
+      } else if (/^(true|false)$/i.test(val)) {
+        val = val.toLowerCase() === 'true';
+      }
+      config[key] = val;
       continue;
     }
   }
@@ -44,6 +53,9 @@ export async function loadModelConfig() {
     api_key: config.api_key || '',
     endpoint: config.endpoint || '',
     model: config.model || '',
-    system_prompt: config.system_prompt || ''
+    system_prompt: config.system_prompt || '',
+    // expose optional numeric params if present
+    max_token: config['max-token'] || config.max_token || null,
+    temperature: config.temperature != null ? config.temperature : null
   };
 }

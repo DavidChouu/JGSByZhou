@@ -270,11 +270,15 @@
       const messages = [];
       if (config.system_prompt) messages.push({ role: 'system', content: config.system_prompt });
       messages.push({ role: 'user', content: userText });
-      const body = JSON.stringify({
+      const requestPayload = {
         model: config.model,
         messages,
         stream: true
-      });
+      };
+      // 将配置中的 max_token 和 temperature 转换为 OpenAI-style 字段传入后端
+      if (config.max_token) requestPayload.max_tokens = Number(config.max_token);
+      if (config.temperature != null) requestPayload.temperature = Number(config.temperature);
+      const body = JSON.stringify(requestPayload);
       const response = await fetch(endpoint, {
         method: 'POST',
         headers,
