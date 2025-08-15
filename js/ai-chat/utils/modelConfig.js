@@ -5,7 +5,7 @@
  * 仅支持 key: "value" 的简单 YAML 格式
  */
 export async function loadModelConfig() {
-  const response = await fetch('config/ai-model.yaml');
+  const response = await fetch('/config/ai-model.yaml');
   if (!response.ok) throw new Error('无法获取模型配置文件');
   const text = await response.text();
   const config = {};

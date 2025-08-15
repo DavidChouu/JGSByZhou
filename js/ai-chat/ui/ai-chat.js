@@ -245,7 +245,7 @@
     return bubble;
   }
 
-  // 流式输出模拟
+  // 流式输出模拟（保留以备后续演示用）
   function streamMarkdownReply(md, cb) {
     let i = 0, out = '';
     const chars = [...md];
@@ -259,8 +259,65 @@
     step();
   }
 
+  // ----------- AI回复逻辑重写（流式API集成） -----------
+  async function fetchChatCompletionStream(config, userText, onToken, onError) {
+    try {
+      const endpoint = config.endpoint.replace(/\/+$/, '') + '/v1/chat/completions';
+      const headers = {
+        'Content-Type': 'application/json'
+      };
+      if (config.api_key) headers['Authorization'] = 'Bearer ' + config.api_key;
+      const body = JSON.stringify({
+        model: config.model,
+        messages: [{ role: 'user', content: userText }],
+        stream: true
+      });
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers,
+        body
+      });
+      if (!response.ok || !response.body) {
+        throw new Error('AI接口请求失败: ' + response.status);
+      }
+      const reader = response.body.getReader();
+      let buffer = '';
+      let done = false;
+      while (!done) {
+        const { value, done: doneReading } = await reader.read();
+        done = doneReading;
+        if (value) {
+          buffer += new TextDecoder().decode(value);
+          // 处理SSE格式：data: ...\n\n
+          let lines = buffer.split('\n');
+          buffer = lines.pop(); // 可能为半行，留待下次
+          for (let line of lines) {
+            line = line.trim();
+            if (!line) continue;
+            if (line.startsWith('data:')) {
+              const data = line.slice(5).trim();
+              if (data === '[DONE]') {
+                done = true;
+                break;
+              }
+              try {
+                const json = JSON.parse(data);
+                const delta = json.choices?.[0]?.delta?.content;
+                if (delta) onToken(delta);
+              } catch (e) {
+                // 忽略解析错误，继续流
+              }
+            }
+          }
+        }
+      }
+    } catch (err) {
+      onError(err);
+    }
+  }
+
   // 发送消息
-  chatWindow.querySelector('.ai-chat-input-area').onsubmit = function (e) {
+  chatWindow.querySelector('.ai-chat-input-area').onsubmit = async function (e) {
     e.preventDefault();
     const userText = input.value.trim();
     if (!userText) return;
@@ -269,31 +326,44 @@
     sendBtn.disabled = true;
     input.style.height = 'auto';
 
-    // AI回复（流式Markdown演示）
-    const aiMd = demoAiReply(userText);
-    const bubble = appendMessage('ai', '', true, true);
-    streamMarkdownReply(aiMd, html => {
-      bubble.innerHTML = html;
-      messages.scrollTop = messages.scrollHeight;
-    });
-  };
-
-  // 示例AI回复（可替换为实际API调用）
-  function demoAiReply(userText) {
-    if (/markdown/i.test(userText)) {
-      return `# Markdown 示例
-**粗体**、*斜体*、\`代码\`、[链接](https://www.example.com)
-
-- 列表项一
-- 列表项二
-
-\`\`\`js
-console.log('代码块');
-\`\`\`
-`;
+    // AI回复逻辑
+    // 1. 检查模型配置加载
+    if (!window.aiChat.isModelConfigLoaded()) {
+      const bubble = appendMessage('ai', '', false);
+      bubble.textContent = '模型配置加载中，请稍后重试。';
+      return;
     }
-    return `你好！我是AI助手，有什么可以帮您？\n\n你刚才说：\n> ${userText}`;
-  }
+    const config = window.aiChat.getModelConfig();
+    if (!config || !config.endpoint || !config.model) {
+      const bubble = appendMessage('ai', '', false);
+      bubble.textContent = 'AI模型配置缺失，请检查 config/ai-model.yaml。';
+      return;
+    }
+
+    // 2. 显示AI回复气泡，准备流式渲染
+    const bubble = appendMessage('ai', '', true, true);
+    let aiText = '';
+    let errorOccurred = false;
+
+    await fetchChatCompletionStream(
+      config,
+      userText,
+      (token) => {
+        aiText += token;
+        bubble.innerHTML = renderMarkdown(aiText);
+        messages.scrollTop = messages.scrollHeight;
+      },
+      (err) => {
+        errorOccurred = true;
+        bubble.innerHTML = '<span style="color:#c00;">AI接口异常：' + (err.message || err) + '</span>';
+        messages.scrollTop = messages.scrollHeight;
+      }
+    );
+    // 若无内容返回且未报错，显示默认提示
+    if (!aiText && !errorOccurred) {
+      bubble.innerHTML = '<span style="color:#c00;">AI未返回内容。</span>';
+    }
+  };
 
   // 自动加载模型配置，预留API集成接口
   let modelConfig = null;
@@ -316,7 +386,7 @@ console.log('代码块');
     const script = document.createElement('script');
     script.type = 'module';
     script.innerHTML = `
-      import { loadModelConfig } from '../../utils/modelConfig.js';
+    import { loadModelConfig } from '/js/ai-chat/utils/modelConfig.js';
       window.__aiChatModelConfigPromise = loadModelConfig()
         .then(cfg => { window.__aiChatModelConfig = cfg; })
         .catch(e => { window.__aiChatModelConfigError = e; });
