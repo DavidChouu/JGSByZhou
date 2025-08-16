@@ -263,10 +263,6 @@
   async function fetchChatCompletionStream(config, userText, onToken, onError) {
     try {
       const endpoint = config.endpoint.replace(/\/+$/, '') + '/v1/chat/completions';
-      const headers = {
-        'Content-Type': 'application/json'
-      };
-      if (config.api_key) headers['Authorization'] = 'Bearer ' + config.api_key;
       const messages = [];
       if (config.system_prompt) messages.push({ role: 'system', content: config.system_prompt });
       messages.push({ role: 'user', content: userText });
@@ -278,11 +274,10 @@
       // 将配置中的 max_token 和 temperature 转换为 OpenAI-style 字段传入后端
       if (config.max_token) requestPayload.max_tokens = Number(config.max_token);
       if (config.temperature != null) requestPayload.temperature = Number(config.temperature);
-      const body = JSON.stringify(requestPayload);
-      const response = await fetch(endpoint, {
+      const response = await fetch('/api/chat', {
         method: 'POST',
-        headers,
-        body
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestPayload)
       });
       if (!response.ok || !response.body) {
         throw new Error('AI接口请求失败: ' + response.status);

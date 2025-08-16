@@ -5,57 +5,25 @@
  * 仅支持 key: "value" 的简单 YAML 格式
  */
 export async function loadModelConfig() {
-  const response = await fetch('/config/ai-model.yaml');
-  if (!response.ok) throw new Error('无法获取模型配置文件');
-  const text = await response.text();
-  const config = {};
-  // 支持 CRLF 和 LF，两种换行都处理
-  const lines = text.split(/\r?\n/);
-  for (let i = 0; i < lines.length; i++) {
-    // 去掉行尾可能残留的回车，便于正则匹配
-    let line = lines[i].replace(/\r$/, '');
-    // 先匹配 block scalar: key: |
-    const blockMatch = line.match(/^\s*(\w+):\s*\|\s*$/);
-    if (blockMatch) {
-      const key = blockMatch[1];
-      let j = i + 1;
-      const parts = [];
-      // 收集后续缩进行，直到遇到下一个顶层 key（从列首开始的 key:）或文件结束
-      while (j < lines.length) {
-        let l = lines[j].replace(/\r$/, '');
-        // 如果下一行是新的顶层 key（列首开始的 key:）则停止
-        if (/^[A-Za-z0-9_]+:\s*/.test(l)) break;
-        // 去掉最小的缩进（空格或制表符），保持相对缩进信息
-        parts.push(l.replace(/^[\t ]{1,}/, ''));
-        j++;
-      }
-      config[key] = parts.join('\n').trim();
-      i = j - 1;
-      continue;
-    }
-    // 匹配 simple key: "value" 或 key: value
-    // 支持键名包含连字符，例如 max-token，也支持数字和布尔值的简单识别。
-    const match = line.match(/^\s*([A-Za-z0-9_\-]+):\s*["']?(.+?)["']?\s*$/);
-    if (match) {
-      const key = match[1];
-      let val = match[2];
-      // 如果是数字，转为 Number
-      if (/^[0-9]+(\.[0-9]+)?$/.test(val)) {
-        val = Number(val);
-      } else if (/^(true|false)$/i.test(val)) {
-        val = val.toLowerCase() === 'true';
-      }
-      config[key] = val;
-      continue;
-    }
+  // 从后端受限接口获取公共配置（不包含 api_key）
+  const resp = await fetch('/api/config');
+  if (!resp.ok) {
+    // 将后端返回的错误暴露给调用方，以便 UI 显示友好提示
+    let text = '';
+    try { text = await resp.text(); } catch (e) { /* ignore */ }
+    throw new Error('无法获取模型配置: ' + (text || resp.status));
+  }
+  const cfg = await resp.json();
+  // 如果必须字段缺失，抛出明确错误，触发前端显示“配置缺失”提示
+  if (!cfg || !cfg.endpoint || !cfg.model) {
+    throw new Error('AI模型配置缺失，请检查 config/ai-model.yaml。');
   }
   return {
-    api_key: config.api_key || '',
-    endpoint: config.endpoint || '',
-    model: config.model || '',
-    system_prompt: config.system_prompt || '',
-    // expose optional numeric params if present
-    max_token: config['max-token'] || config.max_token || null,
-    temperature: config.temperature != null ? config.temperature : null
+    api_key: '', // 客户端不持有 api_key
+    endpoint: cfg.endpoint || '',
+    model: cfg.model || '',
+    system_prompt: cfg.system_prompt || '',
+    max_token: cfg.max_token || null,
+    temperature: cfg.temperature != null ? cfg.temperature : null
   };
 }
